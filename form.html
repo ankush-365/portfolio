@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            height: 40vh;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: none;
+            /* transition: all 0.3s ease; */
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #808080;
+        }
+
+        /* Updated section styles */
+        section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            background-color: rgba(0, 0, 0, 0.2); /* More transparent */
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            color: #fff;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Updated education and experience items */
+        .education-item, .experience-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .education-item:hover, .experience-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 0.5em;
+            background: transparent;
+        }
+
+        .experience-item li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #fff;
+        }
+
+        /* Updated skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.8rem;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Updated contact cards */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card a {
+            color: #4a9eff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #66b3ff;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            section {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<!-- Rest of your HTML remains the same -->
+<body>
+    <header>
+        <!-- <img src="your-photo.jpg" alt="Profile Picture" class="profile-img"> -->
+        <h1>ANKUSH RATNANI</h1>
+        <p>AIML ENTHUSIAST</p>
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>"Hi, I'm Ankush Ratnani, a second-year AIML engineering student with a passion for problem-solving and logical thinking. I specialize in mathematics,developing intelligent systems to solve real-world problems.
+            I'm currently exploring exciting opportunities in the tech world."
+        </p>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+            <h3>B.Tech(Artificial Intelligence And Machine Learning)</h3>
+            <p>L.D College Of Engineering Name</p>
+            <p>2023 - Present</p>
+            <p>CPI: 8.64</p>
+        </div>
+        <div class="education-item">
+            <h3>Higher Secondary School</h3>
+            <p>P.E.M.S High School</p>
+            <p>2021 - 2023</p>
+            <p>Percentile: 97.63</p>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-item">
+            <h3>Teaching Assistant</h3>
+            <p>Amit Barot Maths Zone</p>
+            <p>Dec 2023-Feb 2024</p>
+            <ul>
+                <li>Assisted students of CLass XII in understanding complex concepts related to Integration, Differentation.
+                </li>
+                <li>Conducted tutorial sessions, helped with assignments, and resolved doubts.
+                </li>
+                <li>Received positive feedback from students for effective mentoring and communication.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">HTML5</div>
+            <div class="skill-item">CSS3</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">Java</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">DSA</div>
+            <div class="skill-item">Statistics</div>
+            <div class="skill-item">Logical Reasoning</div>
+            <div class="skill-item">SQL(Relational Database)</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-info">
+            <div class="contact-card">
+                <h3>Email</h3>
+                <p>ankush.ratnani36@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <h3>Phone</h3>
+                <p>+91-7046759183</p>
+            </div>
+            <div class="contact-card">
+                <h3>LinkedIn</h3>
+                <p> <a href="https://linkedin.com/in/ankush-ratnani-147610313/">linkedin.com/in/ankush-ratnani-147610313</a></p>
+            </div>
+            <div class="contact-card">
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/ankush-365">github.com/ankush-365</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ankush Ratnani.</p>
+    </footer>
+</body>
+</html>
