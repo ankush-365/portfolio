@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portfolio</title>
 
-        <style>
+    <style>
         /* Root Variables */
         :root {
             --primary-bg: rgba(0, 0, 0, 0.2);
@@ -13,6 +13,7 @@
             --border-color: rgba(255, 255, 255, 0.1);
             --hover-border: rgba(255, 255, 255, 0.2);
             --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            --tooltip-bg: rgba(0, 0, 0, 0.9);
         }
     
         /* Reset */
@@ -27,7 +28,7 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #fff;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                         url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80');
             background-size: cover;
             background-position: center;
@@ -62,10 +63,9 @@
         nav {
             background: rgba(0, 0, 0, 0);
             padding: 1rem;
-/*             position: sticky; */
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(5px);
+            /* backdrop-filter: blur(5px); */
         }
     
         nav ul {
@@ -123,6 +123,7 @@
     
         .education-item:hover, .experience-item:hover {
             transform: translateY(-5px);
+            background: var(--hover-bg);
         }
     
         .experience-item ul {
@@ -142,7 +143,7 @@
             left: 0;
         }
     
-        /* Skills Grid */
+        /* Skills Grid with Hover Effects */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -154,11 +155,53 @@
             padding: 1rem;
             border-radius: 8px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+            font-weight: bold;
         }
     
         .skill-item:hover {
             transform: translateY(-3px);
+            background: var(--hover-bg);
+        }
+    
+        .skill-item .skill-details {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--tooltip-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            width: max-content;
+            max-width: 250px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-weight: normal;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    
+        .skill-item:hover .skill-details {
+            visibility: visible;
+            opacity: 0.8;
+            bottom: calc(100% + 10px);
+        }
+    
+        .skill-item .skill-details::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--tooltip-bg) transparent transparent transparent;
         }
     
         /* Contact Cards */
@@ -173,6 +216,12 @@
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+    
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: var(--hover-bg);
         }
     
         .contact-card h3 {
@@ -218,6 +267,12 @@
             header {
                 padding: 2rem 1rem;
             }
+    
+            .skill-item .skill-details {
+                width: 200px;
+                font-size: 0.85rem;
+                padding: 0.75rem;
+            }
         }
     
         @media screen and (max-width: 480px) {
@@ -232,6 +287,16 @@
             .education-item, .experience-item {
                 padding: 1rem;
             }
+    
+            .skill-item .skill-details {
+                width: 180px;
+                left: 0;
+                transform: none;
+            }
+    
+            .skill-item .skill-details::after {
+                left: 20%;
+            }
         }
     </style>
 </head>
@@ -240,7 +305,7 @@
     <header>
         <!-- <img src="your-photo.jpg" alt="Profile Picture" class="profile-img"> -->
         <h1>ANKUSH RATNANI</h1>
-        <p>AIML ENTHUSIAST</p>
+        <p><marquee>AIML ENTHUSIAST</marquee></p>
 
     </header>
 
@@ -265,7 +330,7 @@
         <h2 class="section-title">Education</h2>
         <div class="education-item">
             <h3>B.E(Artificial Intelligence And Machine Learning)</h3>
-            <p>L.D College Of Engineering, Ahmedabad</p>
+            <p>L.D College Of Engineering </p>
             <p>2023 - Present</p>
             <p>CPI: 8.64</p>
         </div>
@@ -297,16 +362,66 @@
     <section id="skills">
         <h2 class="section-title">Skills</h2>
         <div class="skills-grid">
-            <div class="skill-item">HTML5</div>
-            <div class="skill-item">CSS3</div>
-            <div class="skill-item">JavaScript</div>
-            <div class="skill-item">Python</div>
-            <div class="skill-item">Java</div>
-            <div class="skill-item">Git</div>
-            <div class="skill-item">DSA</div>
-            <div class="skill-item">Statistics</div>
-            <div class="skill-item">Logical Reasoning</div>
-            <div class="skill-item">SQL(Relational Database)</div>
+            <div class="skill-item">
+                HTML5
+                <div class="skill-details">
+                    Proficient in semantic HTML5, accessibility best practices, and modern markup structures.
+                </div>
+            </div>
+            <div class="skill-item">
+                CSS3
+                <div class="skill-details">
+                    Expert in responsive design, animations and transitions.
+                </div>
+            </div>
+            <div class="skill-item">
+                JavaScript
+                <div class="skill-details">
+                    Experience with functional programming, object-oriented design and modern frameworks.
+                </div>
+            </div>
+            <div class="skill-item">
+                Python
+                <div class="skill-details">
+                    Experience with data analysis and machine learning libraries.
+                </div>
+            </div>
+            <div class="skill-item">
+                Java
+                <div class="skill-details">
+                    Proficient in OOP concepts, collections framework, and basic Java applications.
+                </div>
+            </div>
+            <div class="skill-item">
+                Git
+                <div class="skill-details">
+                    Experienced in version control, branching strategies, and collaborative development.
+                </div>
+            </div>
+            <div class="skill-item">
+                DSA
+                <div class="skill-details">
+                    Strong understanding of data structures, algorithms, and problem-solving techniques.
+                </div>
+            </div>
+            <div class="skill-item">
+                Statistics
+                <div class="skill-details">
+                    Proficient in probability, hypothesis testing, and statistical analysis methods.
+                </div>
+            </div>
+            <div class="skill-item">
+                Logical Reasoning
+                <div class="skill-details">
+                    Strong analytical and problem-solving abilities with systematic approach.
+                </div>
+            </div>
+            <div class="skill-item">
+                SQL
+                <div class="skill-details">
+                    Experienced in database design, complex queries, and data manipulation in relational databases.
+                </div>
+            </div>
         </div>
     </section>
 
