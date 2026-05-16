@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import React, { ReactNode } from 'react';
+import { useTheme } from './ThemeProvider';
 
 interface FadeInProps {
   children: ReactNode;
@@ -43,11 +44,12 @@ export const FadeIn = ({ children, delay = 0, direction = 'up', fullWidth = fals
 };
 
 export const SectionTitle = ({ title, subtitle }: { title: string; subtitle?: string }) => {
+  const { theme } = useTheme();
   return (
     <div className="mb-16 md:mb-24">
       <FadeIn direction="left">
         <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
-          <span className="text-white">{title}</span>
+          <span className={theme === 'dark' ? 'text-white' : 'text-black'}>{title}</span>
         </h2>
       </FadeIn>
       {subtitle && (
@@ -58,12 +60,19 @@ export const SectionTitle = ({ title, subtitle }: { title: string; subtitle?: st
         </FadeIn>
       )}
       <FadeIn direction="none" delay={0.3}>
-        <div className="w-24 h-[1px] bg-gradient-to-r from-white/20 to-transparent mt-8" />
+        <div className={`w-24 h-[1px] mt-8 bg-gradient-to-r ${
+          theme === 'dark' ? 'from-white/20 to-transparent' : 'from-black/20 to-transparent'
+        }`} />
       </FadeIn>
     </div>
   );
 };
 
-export const GlowingBlob = ({ className }: { className?: string }) => (
-  <div className={`absolute rounded-full blur-[120px] mix-blend-screen opacity-20 pointer-events-none ${className}`} />
-);
+export const GlowingBlob = ({ className }: { className?: string }) => {
+  const { theme } = useTheme();
+  return (
+    <div className={`absolute rounded-full blur-[120px] pointer-events-none ${
+      theme === 'dark' ? 'mix-blend-screen opacity-20' : 'mix-blend-multiply opacity-10'
+    } ${className}`} />
+  );
+};

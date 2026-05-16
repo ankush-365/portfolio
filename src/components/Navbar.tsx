@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Cpu } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from './ThemeProvider';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -16,6 +18,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +52,9 @@ export const Navbar = () => {
           animate={{ y: 0, opacity: 1 }}
           className={`flex items-center px-6 py-3 rounded-full border transition-all duration-500 ${
             isScrolled 
-              ? 'bg-black/40 backdrop-blur-xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+              ? theme === 'dark'
+                ? 'bg-black/40 backdrop-blur-xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
+                : 'bg-white/70 backdrop-blur-xl border-black/5 shadow-[0_8px_32px_rgba(0,0,0,0.1)]' 
               : 'bg-transparent border-transparent'
           }`}
         >
@@ -57,10 +62,14 @@ export const Navbar = () => {
             href="#home"
             className="flex items-center gap-2 group mr-8"
           >
-            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Cpu className="text-black w-4 h-4" />
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center group-hover:scale-110 transition-colors ${
+              theme === 'dark' ? 'bg-white' : 'bg-black'
+            }`}>
+              <Cpu className={`${theme === 'dark' ? 'text-black' : 'text-white'} w-4 h-4`} />
             </div>
-            <span className="text-sm font-bold tracking-widest whitespace-nowrap">
+            <span className={`text-sm font-bold tracking-widest whitespace-nowrap transition-colors ${
+              theme === 'dark' ? 'text-white' : 'text-black'
+            }`}>
               ANKUSH <span className="text-gray-500">RATNANI</span>
             </span>
           </a>
@@ -71,28 +80,38 @@ export const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-all hover:text-white relative ${
-                  activeSection === link.href.substring(1) ? 'text-white' : 'text-gray-500'
+                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-all relative ${
+                  activeSection === link.href.substring(1) 
+                    ? theme === 'dark' ? 'text-white' : 'text-black' 
+                    : 'text-gray-500 hover:text-gray-400'
                 }`}
               >
                 {link.name}
                 {activeSection === link.href.substring(1) && (
                   <motion.div 
                     layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 w-full h-[1px] bg-white rounded-full"
+                    className={`absolute -bottom-1 left-0 w-full h-[1px] rounded-full ${
+                      theme === 'dark' ? 'bg-white' : 'bg-black'
+                    }`}
                   />
                 )}
               </a>
             ))}
+            <div className="pl-4 border-l border-white/10 ml-2">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Toggle */}
-          <button 
-            className="md:hidden text-white ml-auto"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4 ml-auto">
+            <ThemeToggle />
+            <button 
+              className={`${theme === 'dark' ? 'text-white' : 'text-black'}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </motion.div>
       </div>
 
@@ -105,14 +124,18 @@ export const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-4 right-4 mt-2 md:hidden"
           >
-            <div className="bg-black/90 backdrop-blur-2xl border border-white/10 p-6 rounded-3xl flex flex-col gap-4">
+            <div className={`${
+              theme === 'dark' ? 'bg-black/90 border-white/10' : 'bg-white/90 border-black/10'
+            } backdrop-blur-2xl border p-6 rounded-3xl flex flex-col gap-4 shadow-2xl`}>
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-sm font-bold tracking-widest uppercase ${
-                    activeSection === link.href.substring(1) ? 'text-white' : 'text-gray-500'
+                  className={`text-sm font-bold tracking-widest uppercase transition-colors ${
+                    activeSection === link.href.substring(1) 
+                      ? theme === 'dark' ? 'text-white' : 'text-black' 
+                      : 'text-gray-500'
                   }`}
                 >
                   {link.name}
