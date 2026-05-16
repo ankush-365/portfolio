@@ -40,7 +40,7 @@ export const projects = [
     tech: ['React', 'JavaScript', 'Chrome Extension APIs', 'Generative AI', 'LLM Integration', 'LangChain', 'Vector Embeddings', 'Tailwind CSS'],
     description: 'A premium AI-powered browser assistant that intelligently reads webpage content and enables real-time AI interaction directly inside the browser. It allows users to chat with any webpage, summarize content, and extract critical insights instantly.',
     highlights: ['AI webpage understanding', 'Context-aware chatbot', 'Real-time summarization', 'Intelligent text extraction'],
-    github: '#',
+    github: 'https://github.com/ankush-365/NextGPT---AI-Powered-Chrome-Extension',
     demo: '#',
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
     isFeatured: true,
@@ -73,13 +73,13 @@ export const projects = [
     github: 'https://github.com/ankush-365/URL-Content-Summarization',
     demo: '#',
     image: 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?q=80&w=1887&auto=format&fit=crop',
-    details: {
-      architecture: [
-        { step: 'Input', desc: 'User provides a YouTube or Website URL' },
-        { step: 'Extraction', desc: 'Retrieves transcripts or scrapes page content' },
-        { step: 'LangChain', desc: 'Processes text through summarization chains' },
-        { step: 'Groq AI', desc: 'Generates ultra-fast summaries with LLaMA 3.1' }
-      ],
+    // details: {
+    //   architecture: [
+    //     { step: 'Input', desc: 'User provides a YouTube or Website URL' },
+    //     { step: 'Extraction', desc: 'Retrieves transcripts or scrapes page content' },
+    //     { step: 'LangChain', desc: 'Processes text through summarization chains' },
+    //     { step: 'Groq AI', desc: 'Generates ultra-fast summaries with LLaMA 3.1' }
+    //   ],
       learnings: 'Improved expertise in varied data ingestion (APIs vs Scraping), handling long-context summarization with LangChain, and optimizing inference speed with Groq.',
       future: ['Language translation support', 'Multiple output formats (PDF/TXT)', 'Voice summary playback']
     }
